@@ -1,0 +1,46 @@
+version: '3'
+services:
+  portainer:
+    image: portainer/portainer-ce
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /DATA/AppData/portainer:/data
+    x-casaos:
+      envs:
+        - container: TZ
+          description:
+            en_us: Specify a timezone, e.g., Europe/London.
+      volumes:
+        - container: /data
+          description:
+            en_us: Where Portainer data will be stored.
+      ports:
+        - container: '8000'
+          description:
+            en_us: For accessing the Portainer API.
+        - container: '9000'
+          description:
+            en_us: For accessing the Portainer web UI.
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: portainer
+  description:
+    en_us: Portainer is a lightweight management UI which allows you to easily manage your Docker host or Swarm cluster.
+  tagline:
+    en_us: Simplify Docker container management.
+  developer: Portainer.io
+  author: Saracen Rhue
+  icon: [URL to Portainer icon]
+  thumbnail: [URL to Portainer thumbnail]
+  title:
+    en_us: Portainer
+  category: Management
+  project_url: https://www.portainer.io/
+  port_map: '9000'
+  index: /

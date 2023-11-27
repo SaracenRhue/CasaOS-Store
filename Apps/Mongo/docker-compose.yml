@@ -1,0 +1,41 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:bionic
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - /DATA/AppData/mongo:/data/db
+    x-casaos:
+      envs:
+        - container: TZ
+          description:
+            en_us: Specify a timezone, e.g., Europe/London.
+      volumes:
+        - container: /data/db
+          description:
+            en_us: Directory where MongoDB stores its data.
+      ports:
+        - container: '27017'
+          description:
+            en_us: MongoDB default port for database connections.
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: mongo
+  description:
+    en_us: MongoDB is a free and open-source cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemas.
+  tagline:
+    en_us: The database for modern applications.
+  developer: MongoDB Inc.
+  author: Saracen Rhue
+  icon: [URL to MongoDB icon]
+  thumbnail: [URL to MongoDB thumbnail]
+  title:
+    en_us: MongoDB
+  category: Database
+  project_url: https://www.mongodb.com/
+  port_map: '27017'
+  index: /
